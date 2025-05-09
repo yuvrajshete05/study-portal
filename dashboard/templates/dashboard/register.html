@@ -1,0 +1,37 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+  <form method="POST">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Join Today</legend>
+
+      <!-- Explicitly rendering form fields -->
+      {% for field in form %}
+        <div class="form-group">
+          {{ field.label }}
+          {{ field }}
+          {% if field.help_text %}
+            <small class="form-text text-muted">{{ field.help_text }}</small>
+          {% endif %}
+        </div>
+      {% endfor %}
+      
+    </fieldset>
+
+    <div class="form-group">
+      <button class="btn btn-outline-info" type="submit">
+        Sign Up
+      </button>
+    </div>
+  </form>
+
+  <div class="border-top pt-3">
+    <small class="text-muted">Already have an account?
+      <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+    </small>
+  </div>
+</div>
+{% endblock content %}

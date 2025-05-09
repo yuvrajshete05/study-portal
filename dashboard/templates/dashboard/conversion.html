@@ -1,0 +1,50 @@
+{% extends 'dashboard/base.html' %} 
+{% load static %} 
+{% block content %}
+<div class="container text-center">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <legend class="border-bottom md-4"></legend>
+            {{ form }}  <!-- This will render your primary form (ConversionForm) -->
+            <button class="btn btn-outline-info" type="submit">
+                Select
+            </button>
+        </div>
+
+        {% if input %}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4"></legend>
+            <div class="row">
+                <div class="col-md-4">
+                    <!-- Input field for entering the value -->
+                    {{ m_form.input }}
+                </div>
+                <div class="col-md-4">
+                    <!-- Measure1 field should have options like 'yard', 'foot' for length -->
+                    {{ m_form.measure1 }}
+                </div>
+                <div class="col-md-4">
+                    <!-- Measure2 field should have options like 'yard', 'foot' for length -->
+                    {{ m_form.measure2 }}
+                </div>
+                
+            </div>
+        </fieldset>
+
+        <fieldset class="form-group">
+            {% if answer %}
+                <p>{{ answer }}</p>  <!-- Display the conversion result -->
+            {% endif %}
+        </fieldset>
+
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">
+                Convert
+            </button>
+        </div>
+        {% endif %}
+    </form>
+</div>
+
+{% endblock content %}
